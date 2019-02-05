@@ -1,0 +1,18 @@
+const express= require('express');
+
+var app = express();
+console.log("before")
+var reqTime = (req,res,next)=>{
+    req.reqTime = Date.now();
+    next();
+};
+app.use(reqTime);
+app.get('/',(req,res)=>{
+    var resTime = "requist time is: ";
+    resTime+= reqTime;
+    res.send(resTime);
+});
+console.log('after')
+
+
+app.listen(5000);
